@@ -1,0 +1,222 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a1a2e;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.game-container {
+  background-color: #2c2b4d;
+  border-radius: 25px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  width: clamp(300px, 95vw, 1100px);
+  text-align: center;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 5px;
+}
+
+.header p {
+  font-size: 1.2em;
+  color: #b0a8c2;
+}
+
+.stage-card {
+  background-color: #3e3d64;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 20px;
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #ff5e5e;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background-color: #ff3c3c;
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  background-color: #4a4968;
+  cursor: not-allowed;
+}
+
+.message-box {
+  margin-top: 20px;
+  font-style: italic;
+  color: #9aff9a;
+  min-height: 20px;
+}
+
+#mines-grid {
+  display: grid;
+  gap: 0.8vw;
+  width: 100%;
+  max-width: 100%;
+  margin: 20px auto;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.grid-3x3 { grid-template-columns: repeat(3, 1fr); }
+.grid-5x5 { grid-template-columns: repeat(5, 1fr); }
+.grid-7x7 { grid-template-columns: repeat(7, 1fr); }
+.grid-9x9 { grid-template-columns: repeat(9, 1fr); }
+.grid-11x11 { grid-template-columns: repeat(11, 1fr); }
+.grid-13x13 { grid-template-columns: repeat(13, 1fr); }
+
+
+.mine-tile {
+  width: 100%;
+  padding-top: 100%;
+  aspect-ratio: 1 / 1;
+  min-width: 0;
+  position: relative;
+  background-color: #3e3d64;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1.5em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.mine-tile span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+
+.revealed span {
+  visibility: visible;
+}
+
+.mine-tile:not([disabled]):hover {
+  background-color: #555486;
+  transform: translateY(-3px);
+}
+
+.mine-tile:active {
+  transform: scale(0.97);
+}
+
+.revealed {
+  cursor: default;
+  color: #fff;
+}
+
+.safe {
+  background-color: #4CAF50 !important;
+  transform: scale(1.05);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.mine {
+  background-color: #ff5e5e !important;
+  animation: mine-reveal 0.3s forwards;
+  transition: background-color 0.2s ease;
+}
+
+@keyframes mine-reveal {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.game-controls {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.selection-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.selection-buttons button {
+  min-width: 120px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 10px;
+}
+
+@media (prefers-contrast: more) {
+  body {
+    background-color: #000;
+    color: #fff;
+  }
+  .safe {
+    background-color: #33cc33 !important;
+  }
+  .mine {
+    background-color: #ff3333 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 15px;
+  }
+  .header h1 {
+    font-size: 2em;
+  }
+  .stage-card {
+    padding: 20px;
+  }
+  button {
+    padding: 12px 20px;
+    font-size: 1em;
+  }
+  .mine-tile {
+    font-size: 1.2em;
+    border-radius: 10px;
+  }
+}
