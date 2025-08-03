@@ -52,7 +52,7 @@ function showSelectionScreen() {
     gameArea.innerHTML = `
         <div class="stage-card">
             <h2>Choose Your Challenge</h2>
-            <p>Select grid size:</p>
+            <p>Select grid size(mobile- 3,5 works best):</p>
             <div class="selection-buttons" id="grid-size-buttons">
                 ${GRID_SIZES.map(size => `<button data-size="${size}">${size}x${size}</button>`).join('')}
             </div>
